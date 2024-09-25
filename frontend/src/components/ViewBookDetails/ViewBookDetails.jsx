@@ -12,7 +12,7 @@ export default function ViewBookDetails() {
     const [Data,setData]=useState()
     useEffect(() => {
       const fetch=async()=>{
-        const response=await axios.get(`http://localhost:1000/api/v1/get-books-by-id/${id}`)
+        const response=await axios.get(`https://inkcredible-books.onrender.com/api/v1/get-books-by-id/${id}`)
         setData(response.data.data)
         
       }
@@ -26,12 +26,12 @@ export default function ViewBookDetails() {
     }
 
     const handleFavourite=async () => {
-      const response=await axios.put("http://localhost:1000/api/v1/add-book-to-favourite",{},{headers})
+      const response=await axios.put("https://inkcredible-books.onrender.com/api/v1/add-book-to-favourite",{},{headers})
       alert(response.data.message)
     }
 
     const handleCart=async()=>{
-      const response=await axios.put("http://localhost:1000/api/v1/add-to-cart",{},{headers})
+      const response=await axios.put("https://inkcredible-books.onrender.com/api/v1/add-to-cart",{},{headers})
       alert(response.data.message)
     }
 

@@ -22,7 +22,7 @@ useEffect(() => {
 
   const fetch=async()=>{
     const res=await axios.get(
-    "http://localhost:1000/api/v1/get-user-cart",{headers})
+    "https://inkcredible-books.onrender.com/api/v1/get-user-cart",{headers})
    
     setCart(res.data.message)
   }
@@ -32,7 +32,7 @@ useEffect(() => {
 
 const deleteItem=async(bookid)=>{
 const res=await axios.put(
-  `http://localhost:1000/api/v1/remove-from-cart/${bookid}`,{},{headers})
+  `https://inkcredible-books.onrender.com/api/v1/remove-from-cart/${bookid}`,{},{headers})
  console.log(response)
 }
 
@@ -54,7 +54,7 @@ const res=await axios.put(
       console.log(Cart)
       try {
         const response=await axios.post(
-          `http://localhost:1000/api/v1/place-order`,
+          `https://inkcredible-books.onrender.com/api/v1/place-order`,
           {order:Cart},
           {headers}
         )
