@@ -10,7 +10,10 @@ const User=require("./routes/userRoute")
 const Favourites=require("./routes/favourite")
 const Cart=require("./routes/cart")
 const Order=require("./routes/order")
-
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+  
 
 app.use(cors())
 app.use(express.json());
