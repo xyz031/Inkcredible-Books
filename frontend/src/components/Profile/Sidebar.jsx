@@ -1,8 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MdLogout } from "react-icons/md";
+import {useDispatch} from "react-redux"
+import {authActions} from "../../store/auth"
+
 
 export default function Sidebar({data}) {
+  const dispatch =useDispatch()
+  const history=useNavigate()
   return (
     <div className='bg-zinc-800 p-4 rounded flex flex-col items-center justify-around h-[100%] '>
 
@@ -30,7 +35,17 @@ export default function Sidebar({data}) {
         Settings</Link>
       </div>
       </div>
-    <button className='bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-0 text-white font -semibold flex items-center justify-center py-2 rounded hover:bg-white hover:text-zinc-900 transition-all duration-300'>
+    <button className='bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-0 text-white font -semibold flex items-center justify-center py-2 rounded hover:bg-white hover:text-zinc-900 transition-all duration-300'
+    onClick={()=>{
+      dispatch(authActions.logout())
+      dispatch(authActions.changeRole("user"))
+      localStorage.clear("id")
+      localStorage.clear("token")
+        localStorage.clear("role")
+        history("/")
+    
+    }}
+    >
     Logout <MdLogout /></button>
 
     </div>

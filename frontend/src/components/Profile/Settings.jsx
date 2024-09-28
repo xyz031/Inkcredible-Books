@@ -20,6 +20,18 @@ export default function Settings() {
   }
   fetch()
   }, [])
+
+
+  const change=(e)=>{
+    const {name,value}=e.target
+    setValue({...Value,[name]:value})
+  }
+
+  const submitAddress=async()=>{
+    const response=await axios.put("https://inkcredible-books.onrender.com/api/v1/update-address",Value,{headers})
+    alert(response.data.message)
+  }
+
   
 
   return (
@@ -38,6 +50,26 @@ export default function Settings() {
         <p className='p-2 rounded bg-zinc-800 mt-2 font-semibold'>
           {ProfileData.email}
         </p>
+      </div>
+
+      <div className='mt-4 flex flex-col'>
+      <label htmlFor="">Address</label>
+        <textarea className='p-2 rounded bg-zinc-800 mt-2 font-semibold'
+        rows="5"
+        placeholder='Address'
+        name='address'
+        value={Value.address}
+        onChange={change}
+        />
+          {/* {ProfileData.address}
+        </textarea> */}
+      </div>
+
+      <div className='mt-4 flex flex-end'>
+
+        <button className='p-2 rounded bg-yellow-500 text-zinc-900 mt-2 py-2 px-3 font-semibold hover:bg-yellow-400 ' onClick={submitAddress}>
+          Update
+        </button>
       </div>
       </div>
     )}
