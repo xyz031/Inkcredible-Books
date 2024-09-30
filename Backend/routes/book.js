@@ -56,20 +56,20 @@ router.put("/update-book",authenticateToken,async (req,res)=>{
 })
 
 // delete book
-router.delete("/delete-book",authenticateToken,async (req,res)=>{
+router.delete("/delete-book", authenticateToken, async (req, res) => {
     try {
-        const {bookid}=req.headers
-       console.log(req.body.price)
-       await Book.findByIdAndDelete(bookid)
+      const { bookid } = req.headers; 
       
-        
-       
-      
-      return res.status(200).json({message:"Book deleted successfully"})
+      if (!bookid) {
+        return res.status(400).json({ message: "Book ID is required" });
+      }
+  
+      await Book.findByIdAndDelete(bookid);
+      res.status(200).json({ message: "Book deleted successfully" });
     } catch (error) {
-      res.status(500).json({message:"Internal server error"})
-    } 
-})
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
 // get all books
 router.get("/get-all-books",async(req,res)=>{
