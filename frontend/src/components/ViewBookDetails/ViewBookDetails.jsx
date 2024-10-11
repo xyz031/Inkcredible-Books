@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
-import { useParams } from 'react-router-dom'
+import { Link,useNavigate, useParams } from 'react-router-dom'
 import { IoLanguageSharp } from "react-icons/io5";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { MdDelete } from "react-icons/md";
 
 
 export default function ViewBookDetails() {
-
+  const navigate=useNavigate()
     const {id}=  useParams()  
     const isLoggedIn=useSelector((state)=>state.auth.isLoggedIn)
     const role=useSelector((state)=>state.auth.role)
@@ -49,8 +49,9 @@ export default function ViewBookDetails() {
    
       try {
         const response = await axios.delete("http://localhost:1000/api/v1/delete-book", { headers });
-        const val = response.data;
-        console.log(val);
+        alert(response.data);
+        navigate("/all-books")
+      
       } catch (error) {
         console.log(error.response ? error.response.data : error.message);
       }
@@ -76,7 +77,7 @@ export default function ViewBookDetails() {
   <button onClick={handleCart} className='bg-white rounded-full  text-blue-500  text-3xl p-3 mt-8'><FaShoppingCart /></button>
   </div>)}
   {isLoggedIn===true && role==="admin" && ( <div className='flex flex-col '> 
-    <button onClick={handleFavourite} className='bg-white rounded-full   text-3xl p-3'><FaEdit /></button>
+    <Link to={`/updateBook/${id}`} className='bg-white rounded-full   text-3xl p-3'><FaEdit /></Link>
   <button onClick={deleteBook} className='bg-white rounded-full  text-red-500  text-3xl p-3 mt-8'><MdDelete />
   </button>
   </div>)}
