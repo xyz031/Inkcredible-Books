@@ -40,7 +40,7 @@ export default function Sidebar({data}) {
 
       {role==="admin" && 
       <div>
-      <div className='w-full flex-col items-center justify-center flex'>
+      <div className=' w-full flex-col items-center justify-center flex'>
         <Link to="/profile" className='text-inc-100 font-semibold w-full py-2 px-7 text-center hover:bg-zinc-900 rounded transition-all'>
        All Orders</Link>
       </div>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaLinesLeaning } from "react-icons/fa6";
 import { useSelector} from "react-redux"
-
+import image from "./image/book.png"
 
 
 export default function Navbar() {
@@ -25,10 +25,10 @@ export default function Navbar() {
   
   if(isLoggedIn===false)
     {
-      links.splice(2, 2)
+      links.splice(2, 3)
     }
     if(isLoggedIn===true && role==="admin"){
-      links.splice(3,1)
+      links.splice(2,2)
     }
     if(isLoggedIn===true && role==="user"){
       links.splice(4,1)
@@ -37,15 +37,15 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="z-50 relative flex bg-zinc-800 text-white px-8 py-2 items-center justify-between">
+      <nav className="z-50 relative flex bg-zinc-800 text-white px-3 py-2 items-center justify-between">
         <div className="flex items-center">
           <img
             className="h-10 me-4"
-            src="https://img.freepik.com/free-vector/hand-drawn-flat-design-stack-books-illustration_23-2149341898.jpg?t=st=1725944773~exp=1725948373~hmac=14362c2dbc457361a14ac694f8dc299fda46c2798dff7760537f46aaeda267f6&w=740"
+            src={image}
             alt=""
           />
-          <Link to="/" className="text-2xl font-semibold">
-            Bookstore
+          <Link to="/" className="text-2xl font-semibold ">
+          Inkcredible<span className="text-yellow-100">Books</span>
           </Link>
         </div>
         <div className="nav-links-bookstore block md:flex items-center gap-4">
@@ -97,6 +97,7 @@ export default function Navbar() {
         {links.map((items, i) => (
           <Link
             to={items.link}
+            onClick={()=>MobileNav==="hidden"?setMobileNav("block"):setMobileNav("hidden")}
             className="text-white text-4xl font-semibold hover:text-blue-500 mb-5"
             key={i}
           >
@@ -106,12 +107,14 @@ export default function Navbar() {
        {isLoggedIn===false && <> <div className="flex gap-4">
           <Link
             to="/Login"
+            onClick={()=>MobileNav==="hidden"?setMobileNav("block"):setMobileNav("hidden")}
             className="px-4 py-1 text-white border border-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
           >
             Log in
           </Link>
           <Link
             to="/SignUp"
+            onClick={()=>MobileNav==="hidden"?setMobileNav("block"):setMobileNav("hidden")}
             className="px-4 py-1 text-white bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300"
           >
             Sign Up

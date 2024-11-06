@@ -34,7 +34,7 @@ export default function Profile() {
       <div className='w-full md:w-2/6 h-screen'>
         <Sidebar data={Profile}/>
       </div>
-      <div className='w-full '>
+      <div className='w-full h-auto '>
         <Outlet/>
       </div>
     </>}
