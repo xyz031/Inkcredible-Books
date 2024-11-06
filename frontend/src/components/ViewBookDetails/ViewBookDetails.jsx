@@ -3,8 +3,9 @@ import axios from 'axios';
 import Loader from '../Loader/Loader';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { IoLanguageSharp } from 'react-icons/io5';
-import { FaShoppingCart, FaHeart, FaEdit } from 'react-icons/fa';
+import { FaShoppingCart, FaHeart} from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
+import { FaEdit } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 
 export default function ViewBookDetails() {
@@ -96,13 +97,13 @@ export default function ViewBookDetails() {
                 <div className='absolute top-4 right-4 flex flex-col gap-4'>
                   <button
                     onClick={handleFavourite}
-                    className='bg-white rounded-full text-red-500 text-3xl p-3'
+                    className='bg-black rounded-full text-red-500 text-3xl p-3 '
                   >
                     <FaHeart />
                   </button>
                   <button
                     onClick={handleCart}
-                    className='bg-white rounded-full text-blue-500 text-3xl p-3 mt-2'
+                    className='bg-black rounded-full text-blue-500 text-3xl p-3 mt-2'
                   >
                     <FaShoppingCart />
                   </button>
@@ -112,13 +113,13 @@ export default function ViewBookDetails() {
                 <div className='absolute top-4 right-4 flex flex-col gap-4'>
                   <Link
                     to={`/updateBook/${id}`}
-                    className='bg-white rounded-full text-3xl p-3'
+                    className='bg-black rounded-full text-white text-3xl p-3'
                   >
                     <FaEdit />
                   </Link>
                   <button
                     onClick={deleteBook}
-                    className='bg-white rounded-full text-red-500 text-3xl p-3 mt-2'
+                    className='bg-black rounded-full text-red-500 text-3xl p-3 mt-2'
                   >
                     <MdDelete />
                   </button>

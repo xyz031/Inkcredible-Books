@@ -23,7 +23,7 @@ export default function AllOrders() {
       setAllOrders(response.data.data);
     };
     fetch();
-  }, []);
+  }, [AllOrders]);
 
   const change = (e) => {
     const { value } = e.target;
