@@ -26,6 +26,7 @@ export default function ViewBookDetails() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+       
         const response = await axios.get(`https://inkcredible-books.onrender.com/api/v1/get-books-by-id/${id}`);
         setData(response.data.data);
       } catch (error) {
@@ -63,16 +64,18 @@ export default function ViewBookDetails() {
     }
   };
 
-  const deleteBook = async () => {
+  const deleteBook = async (bookId) => {
+   
     try {
-      const response = await axios.delete(`http://localhost:1000/api/v1/delete-book/${id}`, { headers });
-      alert(response.data.message || 'Book deleted successfully');
-      navigate('/all-books');
+      const response = await axios.delete("https://inkcredible-books.onrender.com/api/v1/delete-book", { headers });
+      alert(response.data.message);
+      navigate("/all-books")
+    
     } catch (error) {
-      console.error('Error deleting book:', error);
-      alert('Failed to delete book');
+      console.log(error.response ? error.response.data : error.message);
     }
   };
+
 
   if (loading) {
     return (
