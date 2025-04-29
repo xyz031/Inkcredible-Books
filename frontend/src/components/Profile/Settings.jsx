@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import axios from 'axios'
 import Loader from '../Loader/Loader'
+import { toast } from 'react-hot-toast'
 
 export default function Settings() {
 
@@ -27,12 +28,23 @@ export default function Settings() {
     setValue({...Value,[name]:value})
   }
 
-  const submitAddress=async()=>{
-    const response=await axios.put("https://inkcredible-books.onrender.com/api/v1/update-address",Value,{headers})
-    alert(response.data.message)
-  }
-
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        'http://localhost:1000/api/v1/update-address',
+        {
+          username: ProfileData.username,
+          email: ProfileData.email,
+          address: Value.address
+        },
+        { headers }
+      );
+      toast.success(response.data.message || 'Profile updated successfully!');
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to update profile');
+    }
+  };
 
   return (
     <>
@@ -67,7 +79,7 @@ export default function Settings() {
 
       <div className='mt-4 flex flex-end'>
 
-        <button className='p-2 rounded bg-yellow-500 text-zinc-900 mt-2 py-2 px-3 font-semibold hover:bg-yellow-400 ' onClick={submitAddress}>
+        <button className='p-2 rounded bg-yellow-500 text-zinc-900 mt-2 py-2 px-3 font-semibold hover:bg-yellow-400 ' onClick={handleSubmit}>
           Update
         </button>
       </div>

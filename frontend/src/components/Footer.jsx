@@ -11,9 +11,6 @@ export default function Footer() {
         
         {/* Footer Navigation Links */}
         <div className='mt-4 md:mt-0 flex flex-col md:flex-row gap-4 text-center'>
-          <Link to="/about" className='hover:text-yellow-100'>About Us</Link>
-          <Link to="/contact" className='hover:text-yellow-100'>Contact</Link>
-          <Link to="/privacy-policy" className='hover:text-yellow-100'>Privacy Policy</Link>
         </div>
       </div>
     </footer>

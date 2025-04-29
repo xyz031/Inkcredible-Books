@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import { useParams,useNavigate} from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 export default function UpdateBook() {
 
@@ -32,10 +33,10 @@ export default function UpdateBook() {
             if (
                 Data.url==="" || Data.title==="" || Data.author==="" ||Data.price==="" || Data.desc==="" || Data.language===""
              ) {
-                alert("All Field are required")
+                toast.error("All Field are required")
             }
             else{
-                const response=await axios.put("https://inkcredible-books.onrender.com/api/v1/update-book",Data,{headers})
+                const response=await axios.put("http://localhost:1000/api/v1/update-book",Data,{headers})
                 setData({
                     url:"",
                     title:"",
@@ -44,11 +45,11 @@ export default function UpdateBook() {
                     desc:"",
                     language:""
                 })
-                alert(response.data.message)
+                toast.success(response.data.message)
                 navigate(`/view-book-details/${id}`)
             }
         } catch (error) {
-            alert(error.response.data.message)
+            toast.error(error.response.data.message)
             navigate(`/view-book-details/${id}`)
         }
     }
@@ -56,7 +57,7 @@ export default function UpdateBook() {
    
     useEffect(() => {
       const fetch=async()=>{
-        const response=await axios.get(`https://inkcredible-books.onrender.com/api/v1/get-books-by-id/${id}`)
+        const response=await axios.get(`http://localhost:1000/api/v1/get-books-by-id/${id}`)
         setData(response.data.data)
         
       }

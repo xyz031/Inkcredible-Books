@@ -17,6 +17,7 @@ import Settings from "./components/Profile/Settings"
 import AllOrders from "./pages/AllOrders"
 import AddBook from "./pages/AddBook"
 import UpdateBook from "./pages/UpdateBook"
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
 
@@ -38,9 +39,7 @@ useEffect(() => {
 
   return (
    <div>
-   
-
-
+      <Toaster position="top-center" reverseOrder={false} />
       <Navbar/>
       <Routes>
     <Route exact path="/" element={ <Home />}/>

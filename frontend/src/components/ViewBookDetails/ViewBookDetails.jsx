@@ -7,6 +7,7 @@ import { FaShoppingCart, FaHeart} from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { FaEdit } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 export default function ViewBookDetails() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function ViewBookDetails() {
     const fetchData = async () => {
       try {
        
-        const response = await axios.get(`https://inkcredible-books.onrender.com/api/v1/get-books-by-id/${id}`);
+        const response = await axios.get(`http://localhost:1000/api/v1/get-books-by-id/${id}`);
         setData(response.data.data);
       } catch (error) {
         console.error('Error fetching book details:', error);
@@ -41,34 +42,34 @@ export default function ViewBookDetails() {
   const handleFavourite = async () => {
     try {
       const response = await axios.put(
-        'https://inkcredible-books.onrender.com/api/v1/add-book-to-favourite',
+        'http://localhost:1000/api/v1/add-book-to-favourite',
         {},
         { headers }
       );
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (error) {
-      console.error('Error adding to favourites:', error);
+      toast.error(error.response?.data?.message || 'Failed to add to favourites');
     }
   };
 
   const handleCart = async () => {
     try {
       const response = await axios.put(
-        'https://inkcredible-books.onrender.com/api/v1/add-to-cart',
+        'http://localhost:1000/api/v1/add-to-cart',
         {},
         { headers }
       );
-      alert(response.data.message);
+      toast.success(response.data.message);
     } catch (error) {
-      console.error('Error adding to cart:', error);
+      toast.error(error.response?.data?.message || 'Failed to add to cart');
     }
   };
 
   const deleteBook = async (bookId) => {
    
     try {
-      const response = await axios.delete("https://inkcredible-books.onrender.com/api/v1/delete-book", { headers });
-      alert(response.data.message);
+      const response = await axios.delete("http://localhost:1000/api/v1/delete-book", { headers });
+      toast.success(response.data.message);
       navigate("/all-books")
     
     } catch (error) {

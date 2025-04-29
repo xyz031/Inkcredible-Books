@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
+import toast from 'react-hot-toast'
 
 
 export default function SignUp() {
@@ -24,14 +25,14 @@ export default function SignUp() {
       try {
         if(Values.username==="" || Values.email==="" || Values.password==="" || Values.address==="")
         {
-          alert("All fields are required")
+          toast.error("All fields are required")
         }else{
-          const response=await axios.post("https://inkcredible-books.onrender.com/api/v1/sign-up",Values)
-          alert(response.data.message)
+          const response=await axios.post("http://localhost:1000/api/v1/sign-up",Values)
+          toast.success(response.data.message)
           navigate("/Login")
         }
       } catch (error) {
-        alert(error.response.data.message)
+        toast.error(error.response.data.message)
       }
     }
 

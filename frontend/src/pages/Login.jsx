@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import {authActions} from "../store/auth"
 import axios from "axios"
 import {useDispatch} from "react-redux"
+import toast from 'react-hot-toast'
 
 export default function Login() {
 
@@ -27,18 +28,19 @@ export default function Login() {
       try {
         if(Values.username==="" ||  Values.password==="" )
         {
-          alert("All fields are required")
+          toast.error("All fields are required")
         }else{
-          const response=await axios.post("https://inkcredible-books.onrender.com/api/v1/sign-in",Values)
+          const response=await axios.post("http://localhost:1000/api/v1/sign-in",Values)
           dispatch(authActions.login())
           dispatch(authActions.changeRole(response.data.role))
           localStorage.setItem("id",response.data.id)
           localStorage.setItem("token",response.data.token)
           localStorage.setItem("role",response.data.role)
+          toast.success(`Welcome`)
           navigate("/profile")
         }
       } catch (error) {
-      alert(error.response.data.message)
+      toast.error(error.response.data.message)
       }
     }
 

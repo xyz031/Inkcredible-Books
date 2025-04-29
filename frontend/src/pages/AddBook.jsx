@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDropzone } from 'react-dropzone';
+import toast from 'react-hot-toast';
 
 export default function AddBook() {
     const [Data, setData] = useState({
@@ -38,7 +40,10 @@ export default function AddBook() {
         accept: 'image/*'
     });
 
-    const submit = async () => {
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             if (
                 Data.url === "" ||
@@ -48,7 +53,7 @@ export default function AddBook() {
                 Data.desc === "" ||
                 Data.language === ""
             ) {
-                alert("All Fields are required");
+                toast.error("All fields are required");
                 return;
             }
     
@@ -56,7 +61,7 @@ export default function AddBook() {
             console.log("Headers:", headers); // Debug headers
     
             const response = await axios.post(
-                "https://inkcredible-books.onrender.com/api/v1/add-book",
+                "http://localhost:1000/api/v1/add-book",
                 Data,
                 { headers }
             );
@@ -70,10 +75,11 @@ export default function AddBook() {
                 language: ""
             });
     
-            alert(response.data.message);
+            toast.success(response.data.message);
+            navigate('/all-books');
         } catch (error) {
             console.error(error); // Log the error for debugging
-            alert(error.response?.data?.message || "An error occurred.");
+            toast.error(error.response?.data?.message || "An error occurred.");
         }
     };
     
@@ -184,7 +190,7 @@ export default function AddBook() {
 
             <button
                 className="mt-4 px-3 bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600 transition-all duration-30"
-                onClick={submit}
+                onClick={handleSubmit}
             >
                 Add Book
             </button>
