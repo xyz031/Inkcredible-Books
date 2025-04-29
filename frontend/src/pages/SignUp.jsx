@@ -27,7 +27,7 @@ export default function SignUp() {
         {
           toast.error("All fields are required")
         }else{
-          const response=await axios.post("http://localhost:1000/api/v1/sign-up",Values)
+          const response=await axios.post("https://inkcredible-books.onrender.com/api/v1/sign-up",Values)
           toast.success(response.data.message)
           navigate("/Login")
         }

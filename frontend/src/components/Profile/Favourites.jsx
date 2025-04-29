@@ -13,7 +13,7 @@ const headers={
 useEffect(()=>{
   const fetch=async () => {
     const response =await axios.get(
-      "http://localhost:1000/api/v1/get-favourite-books",{headers}
+      "https://inkcredible-books.onrender.com/api/v1/get-favourite-books",{headers}
     )
     setFavouriteBooks(response.data.data)
     

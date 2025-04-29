@@ -28,7 +28,7 @@ export default function ViewBookDetails() {
     const fetchData = async () => {
       try {
        
-        const response = await axios.get(`http://localhost:1000/api/v1/get-books-by-id/${id}`);
+        const response = await axios.get(`https://inkcredible-books.onrender.com/api/v1/get-books-by-id/${id}`);
         setData(response.data.data);
       } catch (error) {
         console.error('Error fetching book details:', error);
@@ -42,7 +42,7 @@ export default function ViewBookDetails() {
   const handleFavourite = async () => {
     try {
       const response = await axios.put(
-        'http://localhost:1000/api/v1/add-book-to-favourite',
+        'https://inkcredible-books.onrender.com/api/v1/add-book-to-favourite',
         {},
         { headers }
       );
@@ -55,7 +55,7 @@ export default function ViewBookDetails() {
   const handleCart = async () => {
     try {
       const response = await axios.put(
-        'http://localhost:1000/api/v1/add-to-cart',
+        'https://inkcredible-books.onrender.com/api/v1/add-to-cart',
         {},
         { headers }
       );
@@ -68,7 +68,7 @@ export default function ViewBookDetails() {
   const deleteBook = async (bookId) => {
    
     try {
-      const response = await axios.delete("http://localhost:1000/api/v1/delete-book", { headers });
+      const response = await axios.delete("https://inkcredible-books.onrender.com/api/v1/delete-book", { headers });
       toast.success(response.data.message);
       navigate("/all-books")
     

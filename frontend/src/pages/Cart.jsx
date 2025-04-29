@@ -19,7 +19,7 @@ export default function Cart() {
 
   useEffect(() => {
     const fetch = async () => {
-      const res = await axios.get('http://localhost:1000/api/v1/get-user-cart', { headers });
+      const res = await axios.get('https://inkcredible-books.onrender.com/api/v1/get-user-cart', { headers });
       setCart(res.data.message);
     };
     fetch();
@@ -35,7 +35,7 @@ export default function Cart() {
   const deleteItem = async (bookid) => {
     try {
       const res = await axios.put(
-        `http://localhost:1000/api/v1/remove-from-cart/${bookid}`,
+        `https://inkcredible-books.onrender.com/api/v1/remove-from-cart/${bookid}`,
         {},
         { headers }
       );
@@ -48,7 +48,7 @@ export default function Cart() {
   const handleRazorpayPayment = async () => {
     try {
       const orderRes = await axios.post(
-        'http://localhost:1000/api/v1/create-razorpay-order',
+        'https://inkcredible-books.onrender.com/api/v1/create-razorpay-order',
         { amount: Total },
         { headers }
       );
@@ -62,7 +62,7 @@ export default function Cart() {
         order_id: order.id,
         handler: async function (response) {
           const verifyRes = await axios.post(
-            'http://localhost:1000/api/v1/verify-razorpay-payment',
+            'https://inkcredible-books.onrender.com/api/v1/verify-razorpay-payment',
             {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
@@ -72,7 +72,7 @@ export default function Cart() {
           );
           if (verifyRes.data.status === 'Success') {
             const placeOrderRes = await axios.post(
-              'http://localhost:1000/api/v1/place-order',
+              'https://inkcredible-books.onrender.com/api/v1/place-order',
               { order: Cart },
               { headers }
             );

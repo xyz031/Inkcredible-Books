@@ -36,7 +36,7 @@ export default function UpdateBook() {
                 toast.error("All Field are required")
             }
             else{
-                const response=await axios.put("http://localhost:1000/api/v1/update-book",Data,{headers})
+                const response=await axios.put("https://inkcredible-books.onrender.com/api/v1/update-book",Data,{headers})
                 setData({
                     url:"",
                     title:"",
@@ -57,7 +57,7 @@ export default function UpdateBook() {
    
     useEffect(() => {
       const fetch=async()=>{
-        const response=await axios.get(`http://localhost:1000/api/v1/get-books-by-id/${id}`)
+        const response=await axios.get(`https://inkcredible-books.onrender.com/api/v1/get-books-by-id/${id}`)
         setData(response.data.data)
         
       }

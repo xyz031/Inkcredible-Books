@@ -32,7 +32,7 @@ export default function Settings() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        'http://localhost:1000/api/v1/update-address',
+        'https://inkcredible-books.onrender.com/api/v1/update-address',
         {
           username: ProfileData.username,
           email: ProfileData.email,

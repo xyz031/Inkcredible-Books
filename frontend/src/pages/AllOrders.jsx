@@ -20,7 +20,7 @@ export default function AllOrders() {
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(
-        'http://localhost:1000/api/v1/get-all-orders',
+        'https://inkcredible-books.onrender.com/api/v1/get-all-orders',
         { headers }
       );
       setAllOrders(response.data.data);
@@ -37,7 +37,7 @@ export default function AllOrders() {
     try {
       const id = AllOrders[i]._id;
       const response = await axios.put(
-        `http://localhost:1000/api/v1/update-status/${id}`,
+        `https://inkcredible-books.onrender.com/api/v1/update-status/${id}`,
         Values,
         { headers }
       );

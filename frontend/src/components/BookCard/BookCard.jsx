@@ -13,7 +13,7 @@ export default function BookCard({ data, favourite }) {
   const handleRemoveBook = async () => {
     try {
       const response = await axios.put(
-        'http://localhost:1000/api/v1/delete-book-from-favourite',
+        'https://inkcredible-books.onrender.com/api/v1/delete-book-from-favourite',
         {},
         { headers }
       );
